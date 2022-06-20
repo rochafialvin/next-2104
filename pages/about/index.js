@@ -1,6 +1,41 @@
 import { Box, Text, Heading, Flex } from "@chakra-ui/react";
+import { useState } from "react";
 
 function About() {
+  const [chiefs, setchiefs] = useState([
+    {
+      id: 1,
+      name: "Robert G Dragon",
+      position: "CEO",
+      image:
+        "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+    },
+    {
+      id: 2,
+      name: "Kim So Young",
+      position: "CMO",
+      image:
+        "https://images.unsplash.com/photo-1542206395-9feb3edaa68d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
+    },
+    {
+      id: 3,
+      name: "Kratos",
+      position: "CWO",
+      image:
+        "https://images.unsplash.com/photo-1555952517-2e8e729e0b44?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
+    },
+  ]);
+
+  const renderChiefs = () => {
+    return chiefs.map((chief) => (
+      <Box key={chief.id} w="30%" p={2} rounded={6}>
+        <img style={{ width: "100%", height: "73.5%" }} src={chief.image} />
+        <Text fontSize="lg">{chief.name}</Text>
+        <Text fontSize="md">{chief.position}</Text>
+      </Box>
+    ));
+  };
+
   return (
     <Box>
       <Heading mb={5}>About Us</Heading>
@@ -37,16 +72,7 @@ function About() {
         congue eu consequat. Urna id volutpat lacus laoreet non curabitur
         gravida arcu.
       </Text>
-      <Flex justifyContent="space-around">
-        <Box w="30%" p={2} rounded={6}>
-          <img
-            style={{ width: "100%", height: "73.5%" }}
-            src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-          />
-          <Text fontSize="lg">Robert G Dragon</Text>
-          <Text fontSize="md">CEO</Text>
-        </Box>
-      </Flex>
+      <Flex justifyContent="space-around">{renderChiefs()}</Flex>
     </Box>
   );
 }
