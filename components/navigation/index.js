@@ -32,6 +32,11 @@ function Navigation() {
               Register
             </Button>
           </NextLink>
+          <NextLink href="/about">
+            <Button variant="ghost" my={5} w="100%">
+              About Us
+            </Button>
+          </NextLink>
         </Flex>
       </HStack>
     </Box>
