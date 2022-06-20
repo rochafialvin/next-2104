@@ -1,7 +1,41 @@
-import React from "react";
+import {
+  Box,
+  Button,
+  Stack,
+  VStack,
+  HStack,
+  Text,
+  Flex,
+  Link,
+} from "@chakra-ui/react";
+import NextLink from "next/link";
 
 function Navigation() {
-  return <div>Navigation Bar</div>;
+  return (
+    <Box width="80%" mx="auto">
+      <HStack>
+        <NextLink href="/">
+          <Link>
+            <Text fontSize="lg" color="gray.600">
+              MARKET
+            </Text>
+          </Link>
+        </NextLink>
+        <Flex>
+          <NextLink href="/login">
+            <Button variant="ghost" my={5} w="100%">
+              Login
+            </Button>
+          </NextLink>
+          <NextLink href="/register">
+            <Button variant="ghost" my={5} w="100%">
+              Register
+            </Button>
+          </NextLink>
+        </Flex>
+      </HStack>
+    </Box>
+  );
 }
 
 export default Navigation;
