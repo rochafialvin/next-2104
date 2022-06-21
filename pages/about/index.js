@@ -1,14 +1,17 @@
 import { Box, Text, Heading, Flex } from "@chakra-ui/react";
+import Link from "next/link";
 import axiosInstance from "../../services/axios";
 
 function About(props) {
   const renderChiefs = () => {
     return props.chiefs.map((chief) => (
-      <Box key={chief.id} w="30%" p={2} rounded={6}>
-        <img style={{ width: "100%", height: "73.5%" }} src={chief.image} />
-        <Text fontSize="lg">{chief.name}</Text>
-        <Text fontSize="md">{chief.position}</Text>
-      </Box>
+      <Link key={chief.id} href={`/about/${chief.id}`}>
+        <Box w="30%" p={2} rounded={6}>
+          <img style={{ width: "100%", height: "73.5%" }} src={chief.image} />
+          <Text fontSize="lg">{chief.name}</Text>
+          <Text fontSize="md">{chief.position}</Text>
+        </Box>
+      </Link>
     ));
   };
 
