@@ -1,4 +1,4 @@
-import React from "react";
+import { Box, HStack, Flex } from "@chakra-ui/react";
 import ProductItem from "../../components/product-item";
 import axiosInstance from "../../services/axios";
 
@@ -9,7 +9,20 @@ function Products(props) {
     return products.map((product) => <ProductItem product={product} />);
   };
 
-  return <div>{renderProducts()}</div>;
+  return (
+    <HStack>
+      <Box>Empty</Box>
+      <Flex
+        w="80%"
+        wrap="wrap"
+        bg="blackAlpha.400"
+        justifyContent={"space-between"}
+        padding={3}
+      >
+        {renderProducts()}
+      </Flex>
+    </HStack>
+  );
 }
 
 export async function getServerSideProps() {
