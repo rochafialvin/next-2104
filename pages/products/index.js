@@ -6,7 +6,9 @@ function Products(props) {
   const { products } = props;
 
   const renderProducts = () => {
-    return products.map((product) => <ProductItem product={product} />);
+    return products.map((product) => (
+      <ProductItem key={product.id} product={product} />
+    ));
   };
 
   return (

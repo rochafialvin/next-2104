@@ -1,4 +1,5 @@
 import { Flex, Text, Button } from "@chakra-ui/react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function ProductItem(props) {
@@ -13,7 +14,8 @@ export default function ProductItem(props) {
       rounded={5}
       p={3}
     >
-      <img src={productImage} alt={productName} />
+      <Image src={productImage} alt={productName} width={500} height={700} />
+      {/* <img src={productImage} alt={productName} /> */}
       <Text mt={3} mb={2}>
         {productName}
       </Text>
