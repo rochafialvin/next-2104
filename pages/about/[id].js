@@ -22,7 +22,7 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   try {
-    const res = await axiosInstance.get("chiefs");
+    const res = await axiosInstance.get("/chiefs");
     const chiefs = res.data;
     const pathParams = chiefs.map((chief) => {
       return { params: { id: String(chief.id) } };
