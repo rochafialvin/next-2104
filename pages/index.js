@@ -1,11 +1,17 @@
 import Head from "next/head";
 import Image from "next/image";
+import MyButton from "../components/button";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
+        <MyButton>Fullstack Developer</MyButton>
+        <MyButton colorScheme="pink">Front End Developer</MyButton>
+        <MyButton isLoading={true} size="lg">
+          Back End Developer
+        </MyButton>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
