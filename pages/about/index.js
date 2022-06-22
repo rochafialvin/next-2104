@@ -1,4 +1,5 @@
 import { Box, Text, Heading, Flex } from "@chakra-ui/react";
+import Head from "next/head";
 import Link from "next/link";
 import axiosInstance from "../../services/axios";
 
@@ -17,6 +18,13 @@ function About(props) {
 
   return (
     <Box>
+      <Head>
+        <title>About Us</title>
+        <meta
+          name="description"
+          content="3 men working in the dark for serving the light"
+        />
+      </Head>
       <Heading mb={5}>About Us</Heading>
       <Text mb={2}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

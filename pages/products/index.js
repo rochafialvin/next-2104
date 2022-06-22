@@ -1,4 +1,5 @@
 import { Box, HStack, Flex } from "@chakra-ui/react";
+import Head from "next/head";
 import ProductItem from "../../components/product-item";
 import axiosInstance from "../../services/axios";
 
@@ -13,6 +14,10 @@ function Products(props) {
 
   return (
     <HStack>
+      <Head>
+        <title>Product List</title>
+        <meta name="description" content="We have everything you want" />
+      </Head>
       <Box>Empty</Box>
       <Flex
         w="80%"
