@@ -1,4 +1,5 @@
 import { Button, Flex, Heading, Input } from "@chakra-ui/react";
+import axios from "axios";
 import { useState } from "react";
 import axiosInstance from "../services/axios";
 
@@ -7,7 +8,27 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onRegisterClick = () => {};
+  const onRegisterClick = async () => {
+    try {
+      const resGetUsername = await axiosInstance.get("/users", {
+        params: { username },
+      });
+      const resUsername = resGetUsername.data[0];
+      if (resUsername) return alert("Username sudah digunakan");
+
+      const resGetEmail = await axiosInstance.get("/users", {
+        params: { email },
+      });
+      const resEmail = resGetEmail.data[0];
+      if (resEmail) return alert("Email sudah digunakan");
+
+      await axiosInstance.post("/users", { username, email, password });
+      alert("Register berhasil");
+    } catch (error) {
+      console.log({ error });
+      alert("Error nich ~");
+    }
+  };
 
   return (
     <Flex height="85vh" alignItems="center" justifyContent="center">
