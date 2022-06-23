@@ -9,7 +9,6 @@ function Login() {
   const onLoginClick = async () => {
     try {
       await signIn("credentials", { redirect: false, email, password });
-      alert("Login berhasil");
     } catch (error) {
       console.log({ error });
       alert("Error nich ~");
