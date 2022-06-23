@@ -2,9 +2,10 @@ import { Box, HStack, Flex } from "@chakra-ui/react";
 import Head from "next/head";
 import ProductItem from "../../components/product-item";
 import axiosInstance from "../../services/axios";
+import { getSession } from "next-auth/react";
 
 function Products(props) {
-  const { products } = props;
+  const { products, session } = props;
 
   const renderProducts = () => {
     return products.map((product) => (
@@ -18,7 +19,7 @@ function Products(props) {
         <title>Product List</title>
         <meta name="description" content="We have everything you want" />
       </Head>
-      <Box>Empty</Box>
+      <Box>{session?.user.email}</Box>
       <Flex
         w="80%"
         wrap="wrap"
@@ -32,12 +33,16 @@ function Products(props) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   try {
+    const session = await getSession({ req: context.req });
+
     const res = await axiosInstance.get("/products");
 
+    if (!session) return { redirect: { destination: "/login" } };
+
     return {
-      props: { products: res.data },
+      props: { products: res.data, session },
     };
   } catch (error) {
     console.log({ error });

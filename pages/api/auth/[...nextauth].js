@@ -14,7 +14,7 @@ const credentialInstance = CredentialsProvider({
       throw new Error("Username atau Password salah");
     }
 
-    return { ok: true };
+    return { email: user.email };
   },
 });
 

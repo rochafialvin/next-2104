@@ -30,11 +30,13 @@ function Navigation() {
           </Link>
         </NextLink>
         <Flex>
-          <NextLink href="/products">
-            <Button variant="ghost" my={5} w="100%">
-              Products
-            </Button>
-          </NextLink>
+          {session && (
+            <NextLink href="/products">
+              <Button variant="ghost" my={5} w="100%">
+                Products
+              </Button>
+            </NextLink>
+          )}
           {!session && (
             <>
               <NextLink href="/login">
