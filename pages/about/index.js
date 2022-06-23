@@ -2,8 +2,34 @@ import { Box, Text, Heading, Flex } from "@chakra-ui/react";
 import Head from "next/head";
 import Link from "next/link";
 import axiosInstance from "../../services/axios";
+import { getSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 
 function About(props) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const router = useRouter();
+
+  const getSessionAsync = async () => {
+    try {
+      const session = await getSession();
+      if (!session) {
+        router.replace("/");
+      } else {
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.log({ error });
+    }
+  };
+
+  useEffect(() => {
+    getSessionAsync();
+  }, []);
+
+  if (isLoading) return <h1 style={{ textAlign: "center" }}>Loading ...</h1>;
+
   const renderChiefs = () => {
     return props.chiefs.map((chief) => (
       <Link key={chief.id} href={`/about/${chief.id}`}>

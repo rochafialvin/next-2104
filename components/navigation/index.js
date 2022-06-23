@@ -49,15 +49,18 @@ function Navigation() {
               </NextLink>
             </>
           )}
-          <NextLink href="/about">
-            <Button variant="ghost" my={5} w="100%">
-              About Us
-            </Button>
-          </NextLink>
+
           {session && (
-            <Button onClick={onLogoutClick} variant="ghost" my={5} w="100%">
-              Logout
-            </Button>
+            <>
+              <NextLink href="/about">
+                <Button variant="ghost" my={5} w="100%">
+                  About Us
+                </Button>
+              </NextLink>
+              <Button onClick={onLogoutClick} variant="ghost" my={5} w="100%">
+                Logout
+              </Button>
+            </>
           )}
         </Flex>
       </HStack>
