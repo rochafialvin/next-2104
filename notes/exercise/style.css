@@ -1,0 +1,34 @@
+h1 {
+  /* Semua element h1 */
+}
+
+div,
+p {
+  /* Semua element div dan p */
+}
+
+div p {
+  /* Semua element p yang ada di dalam div */
+}
+
+div p span {
+  /* Element span yang ada di dalam p, yang p nya ada di dalam div */
+}
+
+div > p {
+  /* Element p yang merupakan anak dari div */
+}
+
+main > p {
+}
+
+p:first-child #scooter {
+  color: blue;
+}
+
+.bermain {
+}
+
+.header {
+  color: red;
+}
