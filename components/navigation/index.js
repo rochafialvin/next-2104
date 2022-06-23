@@ -10,7 +10,6 @@ import {
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { useSession, signOut } from "next-auth/react";
-import { useState } from "react";
 
 function Navigation() {
   const { data: session } = useSession();
