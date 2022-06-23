@@ -1,6 +1,6 @@
 import { Button, Flex, Heading, Input } from "@chakra-ui/react";
 import { useState } from "react";
-import axiosInstance from "../services/axios";
+import { signIn } from "next-auth/react";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -8,20 +8,8 @@ function Login() {
 
   const onLoginClick = async () => {
     try {
-      const resGetUsername = await axiosInstance.get("/users", {
-        params: { username },
-      });
-      const resUsername = resGetUsername.data[0];
-      if (resUsername) return alert("Username sudah digunakan");
-
-      const resGetEmail = await axiosInstance.get("/users", {
-        params: { email },
-      });
-      const resEmail = resGetEmail.data[0];
-      if (resEmail) return alert("Email sudah digunakan");
-
-      await axiosInstance.post("/users", { username, email, password });
-      alert("Register berhasil");
+      await signIn("credentials", { redirect: false, email, password });
+      alert("Login berhasil");
     } catch (error) {
       console.log({ error });
       alert("Error nich ~");
