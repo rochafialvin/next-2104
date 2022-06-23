@@ -7,11 +7,11 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <MyButton>Fullstack Developer</MyButton>
+        {/* <MyButton>Fullstack Developer</MyButton>
         <MyButton colorScheme="pink">Front End Developer</MyButton>
         <MyButton isLoading={true} size="lg">
           Back End Developer
-        </MyButton>
+        </MyButton> */}
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>

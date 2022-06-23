@@ -12,7 +12,7 @@ import NextLink from "next/link";
 
 function Navigation() {
   return (
-    <Box width="80%" mx="auto">
+    <Box width="80%" mx="auto" height="15vh">
       <HStack>
         <NextLink href="/">
           <Link>
