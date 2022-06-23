@@ -1,17 +1,25 @@
 import { Button, Flex, Heading, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const onLoginClick = async () => {
-    try {
-      await signIn("credentials", { redirect: false, email, password });
-    } catch (error) {
-      console.log({ error });
-      alert("Error nich ~");
+    const res = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+    });
+
+    if (!res.error) {
+      router.replace("/");
+    } else {
+      alert(res.error);
+      console.log({ error: res.error });
     }
   };
 
