@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { getSession } from "next-auth/react";
 import axiosInstance from "../../services/axios";
-import { Text, VStack } from "@chakra-ui/react";
+import { Text, VStack, Button } from "@chakra-ui/react";
 import Image from "next/image";
 import { api_origin } from "../../constraint";
 
@@ -16,11 +16,37 @@ function Profile(props) {
     setimgSource(URL.createObjectURL(event.target.files[0]));
   };
 
+  const onSaveButton = async () => {
+    try {
+      const session = await getSession();
+
+      const { accessToken } = session.user;
+
+      const body = new FormData();
+
+      body.append("hendra", avatar);
+
+      const config = {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      };
+
+      const res = await axiosInstance.patch("/users/avatar", body, config);
+
+      alert(res.data.message);
+    } catch (error) {
+      console.log({ Error });
+      alert(error.response.data.message);
+    }
+  };
+
   return (
     <>
       <VStack>
         <Image src={imgSource} width={200} height={200} />
         <input type={"file"} onChange={onFileChange} />
+        <Button variant={"ghost"} onClick={onSaveButton}>
+          Save
+        </Button>
       </VStack>
       <Text>Username : {username}</Text>
       <Text>First name : {first_name}</Text>
