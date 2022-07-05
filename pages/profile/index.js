@@ -2,11 +2,16 @@ import React from "react";
 import { getSession } from "next-auth/react";
 import axiosInstance from "../../services/axios";
 import { Text } from "@chakra-ui/react";
+import Image from "next/image";
+import { api_origin } from "../../constraint";
 
 function Profile(props) {
-  const { username, first_name, last_name, email, gender, phone } = props.user;
+  const { username, first_name, last_name, email, gender, phone, image } =
+    props.user;
+  const imgSource = api_origin + image;
   return (
     <>
+      <Image src={imgSource} width={200} height={200} />
       <Text>Username : {username}</Text>
       <Text>First name : {first_name}</Text>
       <Text>Last name : {last_name}</Text>
