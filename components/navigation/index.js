@@ -61,6 +61,9 @@ function Navigation() {
               <Button onClick={onLogoutClick} variant="ghost" my={5} w="100%">
                 Logout
               </Button>
+              <Button my={5} w="100%">
+                Hello, {session?.user.username}
+              </Button>
             </>
           )}
         </Flex>
