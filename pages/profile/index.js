@@ -25,6 +25,8 @@ function Profile(props) {
       const body = new FormData();
 
       body.append("hendra", avatar);
+      // body.append("namaProduct", "Pop Mie")
+      // body.append("stock", 1000)
 
       const config = {
         headers: { Authorization: `Bearer ${accessToken}` },
