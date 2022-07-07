@@ -9,7 +9,7 @@ function Products(props) {
 
   const renderProducts = () => {
     return products.map((product) => (
-      <ProductItem key={product.id} product={product} />
+      <ProductItem key={product.product_id} product={product} />
     ));
   };
 
@@ -19,7 +19,6 @@ function Products(props) {
         <title>Product List</title>
         <meta name="description" content="We have everything you want" />
       </Head>
-      <Box>{session?.user.email}</Box>
       <Flex
         w="80%"
         wrap="wrap"
@@ -37,15 +36,24 @@ export async function getServerSideProps(context) {
   try {
     const session = await getSession({ req: context.req });
 
-    const res = await axiosInstance.get("/products");
-
     if (!session) return { redirect: { destination: "/login" } };
 
+    const { accessToken } = session.user;
+
+    const config = {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    };
+
+    const res = await axiosInstance.get("/products", config);
+
     return {
-      props: { products: res.data, session },
+      props: { products: res.data.data.result, session },
     };
   } catch (error) {
     console.log({ error });
+    return {
+      props: { products: [] },
+    };
   }
 }
 

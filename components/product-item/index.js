@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function ProductItem(props) {
-  const { id, productName, productImage, price } = props.product;
+  const { product_id, variant, price, origin } = props.product;
 
   return (
     <Flex
@@ -14,13 +14,14 @@ export default function ProductItem(props) {
       rounded={5}
       p={3}
     >
-      <Image src={productImage} alt={productName} width={500} height={700} />
+      {/* <Image src={productImage} alt={productName} width={500} height={700} /> */}
       {/* <img src={productImage} alt={productName} /> */}
       <Text mt={3} mb={2}>
-        {productName}
+        {variant}
       </Text>
       <Text mb={3}>Rp. {price.toLocaleString("id")}</Text>
-      <Link href={`/products/${id}`}>
+      <Text mb={3}>Origin : {origin}</Text>
+      <Link href={`/products/${product_id}`}>
         <Button>Detail</Button>
       </Link>
     </Flex>
