@@ -19,8 +19,8 @@ function Register() {
       const res = await axiosInstance.post("/users", body);
       alert(res.data.message);
     } catch (error) {
-      console.log({ error });
-      alert(error.response.data.message);
+      if (error.response.data) return alert(error.response.data.message);
+      alert(error.message);
     } finally {
       // akan dijalankan di akhir, terlepas proses di try berhasil ataupun gagal lalu masuk ke catch
       setisRegisterProcess(false);
