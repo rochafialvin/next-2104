@@ -57,6 +57,11 @@ function Navigation() {
                   Hello, {session?.user.username}
                 </Button>
               </NextLink>
+              <NextLink href="/cart">
+                <Button variant="ghost" my={5} w="100%">
+                  cart
+                </Button>
+              </NextLink>
             </>
           )}
         </Flex>
