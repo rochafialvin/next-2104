@@ -1,16 +1,36 @@
-import { Box, HStack, Text, Button } from "@chakra-ui/react";
+import { Box, HStack, Text, Button, Input } from "@chakra-ui/react";
 import axiosInstance from "../../services/axios";
 import { getSession } from "next-auth/react";
 import Image from "next/image";
 import { api_origin } from "../../constraint";
+import { useState } from "react";
 
 function ProductDetail(props) {
   const { product } = props;
-  const { variant, image, price, origin, description } = product;
-  // image : /public/product/default-noodle.jpg
-  // api_origin : http://localhost:2104
-  // imageSource : http://localhost:2104/public/product/default-noodle.jpg
+  const [quantity, setQuantity] = useState(1);
+  const { product_id, variant, image, price, origin, description } = product;
   const imageSource = api_origin + image;
+
+  const onAddToCart = async () => {
+    try {
+      const session = await getSession();
+      const { accessToken } = session.user;
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+      const body = {
+        product_id,
+        quantity,
+      };
+      await axiosInstance.post("/carts", body, config);
+      alert("Add to cart Success");
+    } catch (error) {
+      if (error.response.data) return alert(error.response.data.message);
+      alert(error.message);
+    }
+  };
 
   return (
     <HStack>
@@ -20,7 +40,14 @@ function ProductDetail(props) {
         <Text mb={3}>{origin}</Text>
         <Text mb={2}>{description}</Text>
         <Text>Rp. {price.toLocaleString("id")}</Text>
-        <Button variant="ghost">Add</Button>
+        <Input
+          variant="outline"
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+        />
+        <Button variant="ghost" onClick={onAddToCart}>
+          Add
+        </Button>
       </Box>
     </HStack>
   );
