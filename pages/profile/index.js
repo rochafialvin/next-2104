@@ -61,7 +61,7 @@ function Profile(props) {
       <Button variant={"ghost"} onClick={onOpen}>
         Edit Profile
       </Button>
-      <EditProfile isOpen={isOpen} onClose={onClose} />
+      <EditProfile isOpen={isOpen} onClose={onClose} userProfile={props.user} />
     </>
   );
 }

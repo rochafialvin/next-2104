@@ -8,24 +8,81 @@ import {
   ModalCloseButton,
   Heading,
   Button,
+  Input,
 } from "@chakra-ui/react";
+import { useState } from "react";
 
-function EditProfile({ isOpen, onClose }) {
+function EditProfile({ isOpen, onClose, userProfile }) {
+  // userProfile : { username, first_name, last_name, email, gender, phone }
+  const [user, setUser] = useState(userProfile);
+  const { username, first_name, last_name, email, gender, phone } = user;
+
+  const onHandleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Modal Title</ModalHeader>
+        <ModalHeader>Update Profile</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Heading>Hehe</Heading>
+          <Input
+            name="username"
+            type="text"
+            value={username}
+            disabled
+            variant="filled"
+            mb={3}
+            onChange={onHandleChange}
+          />
+          <Input
+            name="first_name"
+            type="text"
+            value={first_name}
+            variant="filled"
+            mb={3}
+            onChange={onHandleChange}
+          />
+          <Input
+            name="last_name"
+            type="text"
+            value={last_name}
+            variant="filled"
+            mb={3}
+            onChange={onHandleChange}
+          />
+          <Input
+            name="email"
+            type="text"
+            value={email}
+            variant="filled"
+            mb={3}
+            onChange={onHandleChange}
+          />
+          <Input
+            name="gender"
+            type="text"
+            value={gender}
+            variant="filled"
+            mb={3}
+            onChange={onHandleChange}
+          />
+          <Input
+            name="phone"
+            type="text"
+            value={phone}
+            variant="filled"
+            mb={3}
+            onChange={onHandleChange}
+          />
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={onClose}>
-            Close
+          <Button colorScheme="green" mr={3}>
+            Save
           </Button>
-          <Button variant="ghost">Secondary Action</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
