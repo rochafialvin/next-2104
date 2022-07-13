@@ -9,13 +9,15 @@ import {
   Heading,
   Button,
   Input,
+  Select,
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-function EditProfile({ isOpen, onClose, userProfile }) {
-  // userProfile : { username, first_name, last_name, email, gender, phone }
+function EditProfile(props) {
+  const { isOpen, onClose, userProfile, onSaveProfileUpdate } = props;
+  // userProfile : { username, firstName, lastName, email, gender, phone, age }
   const [user, setUser] = useState(userProfile);
-  const { username, first_name, last_name, email, gender, phone } = user;
+  const { username, firstName, lastName, email, gender, phone, age } = user;
 
   const onHandleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -38,17 +40,17 @@ function EditProfile({ isOpen, onClose, userProfile }) {
             onChange={onHandleChange}
           />
           <Input
-            name="first_name"
+            name="firstName"
             type="text"
-            value={first_name}
+            value={firstName}
             variant="filled"
             mb={3}
             onChange={onHandleChange}
           />
           <Input
-            name="last_name"
+            name="lastName"
             type="text"
-            value={last_name}
+            value={lastName}
             variant="filled"
             mb={3}
             onChange={onHandleChange}
@@ -62,13 +64,24 @@ function EditProfile({ isOpen, onClose, userProfile }) {
             onChange={onHandleChange}
           />
           <Input
-            name="gender"
+            name="age"
             type="text"
-            value={gender}
+            value={age}
             variant="filled"
             mb={3}
             onChange={onHandleChange}
           />
+          <Select
+            name="gender"
+            value={gender}
+            variant="filled"
+            onChange={onHandleChange}
+            mb={3}
+          >
+            <option value="M">M</option>
+            <option value="F">F</option>
+          </Select>
+
           <Input
             name="phone"
             type="text"
@@ -80,7 +93,11 @@ function EditProfile({ isOpen, onClose, userProfile }) {
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="green" mr={3}>
+          <Button
+            colorScheme="green"
+            mr={3}
+            onClick={() => onSaveProfileUpdate(user)}
+          >
             Save
           </Button>
         </ModalFooter>
