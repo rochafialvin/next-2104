@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { getSession } from "next-auth/react";
 import axiosInstance from "../../services/axios";
-import { Text, VStack, Button } from "@chakra-ui/react";
+import { Text, VStack, Button, useDisclosure } from "@chakra-ui/react";
 import Image from "next/image";
 import { api_origin } from "../../constraint";
+import EditProfile from "../../components/edit-profile";
 
 function Profile(props) {
   const [avatar, setAvatar] = useState({});
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [imgSource, setimgSource] = useState(api_origin + props.user.image);
 
   const { username, first_name, last_name, email, gender, phone } = props.user;
@@ -56,6 +58,10 @@ function Profile(props) {
       <Text>Email : {email}</Text>
       <Text>Gender : {gender}</Text>
       <Text>Phone : {phone}</Text>
+      <Button variant={"ghost"} onClick={onOpen}>
+        Edit Profile
+      </Button>
+      <EditProfile isOpen={isOpen} onClose={onClose} />
     </>
   );
 }

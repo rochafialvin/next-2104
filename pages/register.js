@@ -16,9 +16,9 @@ function Register() {
         email,
         password,
       };
-      const res = await axiosInstance.post("/users", body);
-      alert(res.data.message);
+      await axiosInstance.get("/transactions/print");
     } catch (error) {
+      console.log({ error });
       if (error.response.data) return alert(error.response.data.message);
       alert(error.message);
     } finally {
